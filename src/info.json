@@ -1,0 +1,129 @@
+{
+  "identifier": "bob.plugin.spark.translate",
+  "category": "translate",
+  "version": "1.0.0",
+  "name": "讯飞星火",
+  "summary": "使用 讯飞星火 API 进行翻译",
+  "author": "djx30103",
+  "homepage": "https://github.com/djx30103/bob-plugin-spark-translate",
+  "appcast": "https://github.com/djx30103/bob-plugin-spark-translate/raw/main/appcast.json",
+  "icon": "icon.png",
+  "minBobVersion": "1.8.0",
+  "options": [
+    {
+      "identifier": "Model",
+      "type": "menu",
+      "title": "模型",
+      "desc": "请选择您需要的模型。\n建议不要使用「Spark Lite」模型，如果选择了该模型，最好自行配置「角色设定」和「用户指令」。\n请注意，该模型的回答可能会包含不必要的话术。",
+      "defaultValue": "4.0Ultra",
+      "menuValues": [
+        {
+          "title": "Spark4.0 Ultra",
+          "value": "4.0Ultra"
+        },
+        {
+          "title": "Spark Max",
+          "value": "generalv3.5"
+        },
+        {
+          "title": "Spark Pro",
+          "value": "generalv3"
+        },
+        {
+          "title": "Spark Lite",
+          "value": "general"
+        }
+      ]
+    },
+    {
+      "identifier": "TransferMode",
+      "type": "menu",
+      "title": "传输模式",
+      "defaultValue": "1",
+      "desc": "请选择是否使用流式传输功能。",
+      "menuValues": [
+        {
+          "title": "流式",
+          "value": "1"
+        },
+        {
+          "title": "非流式",
+          "value": "2"
+        }
+      ]
+    },
+    {
+      "identifier": "Mode",
+      "type": "menu",
+      "title": "模式",
+      "defaultValue": "1",
+      "desc": "「翻译」模式是将文本翻译为目标语言。\n「润色」模式不会进行语言翻译，而是对原始文本进行修改和优化。\n「自定义 Prompt」 模式可以自行设置角色设定（System Prompt）和用户指令（User Prompt），满足个性化的需求。",
+      "menuValues": [
+        {
+          "title": "翻译",
+          "value": "1"
+        },
+        {
+          "title": "润色",
+          "value": "2"
+        },
+        {
+          "title": "自定义prompt",
+          "value": "3"
+        }
+      ]
+    },
+    {
+      "identifier": "APIKey",
+      "type": "text",
+      "title": "APIKey",
+      "desc": "请填写 APIKey。\n您可以访问「讯飞星火官网」获取这些信息。",
+      "textConfig": {
+        "type": "secure"
+      }
+    },
+    {
+      "identifier": "APISecret",
+      "type": "text",
+      "title": "APISecret",
+      "desc": "请填写 APISecret。\n您可以访问「讯飞星火官网」获取这些信息。",
+      "textConfig": {
+        "type": "secure"
+      }
+    },
+    {
+      "identifier": "CustomizeURL",
+      "type": "text",
+      "title": "自定义 API URL",
+      "defaultValue": "",
+      "desc": "需要填写完整的 URL。\n默认为「https://spark-api-open.xf-yun.com/v1/chat/completions」。\n如果仅需修改域名，把「spark-api-open.xf-yun.com」改掉即可。",
+      "textConfig": {
+        "type": "visible"
+      }
+    },
+    {
+      "identifier": "SystemPrompt",
+      "type": "text",
+      "title": "角色设定",
+      "defaultValue": "",
+      "desc": "此设置仅在「自定义 Prompt」模式有效，其他模式无需设置。\n通过此项设置对话背景或赋予模型角色，对应字段参数是system，文本中可使用以下变量：\n\n$query.detectFromLang - 原文语言，即翻译窗口输入框内文本的语言，比如`简体中文`\n$query.detectToLang - 目标语言，即需要翻译成的语言，可以在翻译窗口中手动选择或自动检測，比如`English`",
+      "textConfig": {
+        "type": "visible",
+        "height": "100",
+        "placeholderText": "例如：\n你是一个翻译器"
+      }
+    },
+    {
+      "identifier": "UserInstructions",
+      "type": "text",
+      "title": "用户指令",
+      "defaultValue": "",
+      "desc": "此设置仅在「自定义 Prompt」模式有效，其他模式无需设置。\n通过此项设置对大模型发出的具体指令，用于描述需要大模型完成的目标任务和需求说明，对应字段参数是user，文本中可使用以下变量：\n\n$query.text - 需要翻译的文本，即翻译窗口输入框内的文本\n$query.detectFromLang - 原文语言，即翻译窗口输入框内文本的语言，比如`简体中文`\n$query.detectToLang - 目标语言，即需要翻译成的语言，可以在翻译窗口中手动选择或自动检測，比如`English`",
+      "textConfig": {
+        "type": "visible",
+        "height": "100",
+        "placeholderText": "例如：\n将以下文本翻译为 $query.detectToLang：\n$query.text"
+      }
+    }
+  ]
+}
