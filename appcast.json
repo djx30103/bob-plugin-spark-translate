@@ -1,1 +1,1 @@
-{}
+{ "versions": [ { "version": "1.0.0", "desc": "None", "sha256": "eb142ebfb1d049a4ae25b50c9ac8b106f0908156745f259ccd8b8389131193b4", "url": "https://github.com/djx30103/bob-plugin-spark-translate/releases/download/v1.0.0/bob-plugin-spark-translate-1.0.0.bobplugin", "minBobVersion": "1.8.0" } ] }
